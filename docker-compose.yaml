@@ -1,0 +1,18 @@
+version: '3'
+services:
+  ultralytics:
+    platform: linux/amd64
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    container_name: 'yolo-test'
+    working_dir: '/tmp/work/'
+    env_file:
+      - .env
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - ./:/tmp/work
+    ports:
+      - "${PORT}:${PORT}" 
+    tty: true
